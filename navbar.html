@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Navbar</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto';
+        }
+
+        nav {
+            width: 100%;
+            background-color: blueviolet;
+        }
+
+        .main_nav_container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-height: 80px;
+            min-height: 60px;
+            /* padding: 1rem; */
+        }
+
+        #logo_icon_photo {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            margin-left: 2px;
+        }
+
+        .company_icon_logo_name {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        #h4_heading {
+            font-size: 1.4rem;
+            color: white;
+        }
+
+        .nav_items_container {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search_button_container {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 3px;
+        }
+
+        .search_button_container input {
+            height: 32px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        #search_button {
+            border: none;
+            background-color: rgb(199, 199, 9);
+            padding: .4rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .nav_itme_continer_anchor_ele {
+            width: 20%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav_itme_continer_anchor_ele a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .hamburger_container {
+            display: flex;
+        }
+
+        .fa-solid {
+            font-size: 1.6rem;
+            margin-right: 10px;
+            color: white;
+            display: none;
+        }
+
+        /* for mobile responsive  */
+        @media(max-width:658px) {
+            .nav_items_container {
+                display: none;
+            }
+
+            .fa-solid {
+                display: flex;
+            }
+
+            .nav_items_container {
+                width: 60%;
+                min-width: 40%;
+                height: 100vh;
+                position: absolute;
+                top: 3.5rem;
+                left: -60%;
+                display: flex;
+                background-color: rgba(0, 0, 255, 0.6);
+                flex-direction: column;
+                justify-content: start;
+                gap: 2rem;
+                transition: left .4s ease-in-out;
+            }
+
+            .active {
+                left: 0;
+            }
+
+            .nav_itme_continer_anchor_ele {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .search_button_container {
+                margin-top: 1rem;
+            }
+
+            .search_button_container input {
+                width: 60%;
+                margin-left: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="main_nav_container">
+            <div class="company_icon_logo_name">
+                <img src="/logo.png" id="logo_icon_photo" alt="logo">
+                <h4 id="h4_heading">RaunNews24x7</h4>
+            </div>
+            <div class="nav_items_container" id="nav_items_container">
+                <div class="search_button_container">
+                    <input type="text" name="inp" id="input_search" placeholder="Search">
+                    <button id="search_button">Search</button>
+                </div>
+                <div class="nav_itme_continer_anchor_ele">
+                    <a href="#">Home</a>
+                    <a href="#">Service</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Rearch</a>
+                </div>
+            </div>
+            <div class="hamburger_container">
+                <i class="fa-solid fa-bars" id="three_bars"></i>
+            </div>
+        </div>
+    </nav>
+    <script>
+        const navItems = document.getElementById("nav_items_container");
+        const bars = document.getElementById("three_bars");
+        bars.addEventListener("click", () => {
+            navItems.classList.toggle("active");
+        });
+       
+        document.addEventListener("click", (event) => 
+        {
+            const isClickInsideNav = navItems.contains(event.target) || bars.contains(event.target); //return true if click occured in between navItems of bars
+            if (!isClickInsideNav && navItems.classList.contains("active")) {
+                navItems.classList.remove("active");
+            }
+        });
+    </script>
+</body>
+
+</html>
